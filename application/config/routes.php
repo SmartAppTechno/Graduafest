@@ -116,10 +116,9 @@ $route['admin/(:any)']                                          = 'admin_control
 $route['user_authentication'] = 'user_authentication';
 $route['user/agregaraCarro'] = 'user_controller/agregaraCarro';
 
-$route['user/log_in']                                           = 'user_pagina_inicial_controller/log_in';
-$route['user/log_in/email']                                     = 'user_pagina_inicial_controller/log_in_email';
+$route['fblogin']                                           = 'user_pagina_inicial_controller/fblogin';
+$route['fbcallback']                                     = 'user_pagina_inicial_controller/fbcallback';
 $route['user/log_out']                                          = 'user_pagina_inicial_controller/log_out';
-$route['user/registrarse']                                      = 'user_pagina_inicial_controller/registrar';
 
 $route['user/paquetes_personales']                              = 'user_paquetes_personales_controller';
 $route['user/paquetes_personales/agregar_a_carrito']            = 'user_paquetes_personales_controller/agregar_a_carro';

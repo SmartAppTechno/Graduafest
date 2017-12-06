@@ -2,10 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_paquetes_personales_controller extends CI_Controller {
-	protected  $facebook;
 	public function __construct(){
 		parent::__construct();        
-        
         $this->load->model('persona_model');        
 		$this->load->model('productos_modelo');
         $this->load->model('graduacion_modelo');

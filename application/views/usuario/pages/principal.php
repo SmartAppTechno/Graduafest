@@ -48,7 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body id="page-top" class="index">
 <div id="fb-root"></div>
-	<?php // echo $error_registrar ?>
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
@@ -94,72 +93,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h4 class="modal-title">Ingresar</h4>
           </div>
           <div class="modal-body">
-              <h5>Facebook</h5>
-             <?php
-                if(!empty($authUrl)) {
-                    //echo '<a href="'.$authUrl.'"><img src="'.base_url().'assets/imagesUser/flogin.png" alt=""/></a>';
-                    echo '<a href="'. htmlspecialchars($authUrl).'" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span>Ingresar con facebook</a>';
-                }
-              ?>
-            <!--<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>-->
-              <h5>Email</h5>
-              <form action="<?php echo site_url("user/log_in/email") ?>" method="post">
-                  <div class="form-group">
-                      <!--<label>Email</label>-->
-                      <input type="email" class="form-control" placeholder="Correo electronica" id="usuario" name="usuario" required>                      
-                  </div>
-                  <div class="form-group">
-                      <!--<label>Contraseña:</label>-->
-                      <input type="password" class="form-control" placeholder="Contraseña" id="contraseña" name="contraseña" required>                      
-                  </div>
-                  <?php if($error_registrar == 3){?>
-                  <p style="color: #e74c3c;">La contraseña o el correo son incorrectos.</p>
-                  <script>
-                    $( document ).ready(function() {
-                        $("#myModal").modal();
-                    });
-                  </script>
-                  <?php } ?>
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
-				  <button id="registrar" class="btn btn-primary"><i class="fa fa-share" aria-hidden="true"></i>Registrarse</button>
-              </form>
-				
-              
-              <form id="form_r" action="<?php echo site_url("user/registrarse") ?>" method="post">
-                  <h5>Registrarse</h5>
-				  <div class="form-group">
-                      <!--<label>Email</label>-->
-                      <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="nombre" required>                      
-                  </div>
-                  <div class="form-group">
-                      <!--<label>Email</label>-->
-                      <input type="email" class="form-control" placeholder="Correo electronico" id="email" name="email" required>                      
-                  </div>
-                  <div class="form-group">
-                      <!--<label>Contraseña:</label>-->
-                      <input type="password" class="form-control" placeholder="Contraseña" id="contraseña" name="contraseña" required>                      
-                  </div>
-                  <?php if($error_registrar == 1){?>
-                  <p style="color: #e74c3c;">Error al registrar</p>
-                  <script>
-                    $( document ).ready(function() {
-                        $("#myModal").modal();
-                    });
-                  </script>
-                  <?php } ?>
-                  <?php if($error_registrar == 2){?>
-                  <p style="color: #e74c3c;">Error el correo ya fue utilizado</p>
-                  <script>
-                    $( document ).ready(function() {
-                        $("#myModal").modal();
-                    });
-                  </script>
-                  <?php } ?>
-                  <button type="submit" class="btn btn-primary">Guardar</button>
+              <form role="form" action="<?php echo base_url('fblogin'); ?>" method="post">
+                  <button type="submit" class="btn btn-primary">Iniciar Sesión con Facebook</button>
               </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
 

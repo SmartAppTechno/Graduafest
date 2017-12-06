@@ -43,12 +43,13 @@ class Persona_model extends CI_Model {
                 }
                 return 1;
 		}       
-        public function insertar_persona($data = array()){
-            $query = $this->db->get_where('tbl_persona', array('correo' => $data['email'] ));                
+        public function insertar_persona($nombre,$email,$foto){
+            $query = $this->db->get_where('tbl_persona', array('correo' => $email ));                
             if($query->row_array() == NULL){
                 $data = array(
-                        'correo' => $data['email'],
-                        'nombre' => $data['first_name']." ".$data['last_name']
+                        'correo' => $email,
+                        'nombre' => $nombre,
+                        'picture_url' => $foto
                 );
 
                 if($this->db->insert('tbl_persona', $data)){
