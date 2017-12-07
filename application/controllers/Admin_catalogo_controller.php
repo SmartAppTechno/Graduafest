@@ -27,8 +27,8 @@
             $this->load->view('administrador/templates/header');         
             $this->load->view('administrador/templates/navigation',$data);
             
-            $data["categorias_modificables"] = $this->categoria_modelo->obtener_todas_categorias_modificables();
-            $data["categorias"] = $this->categoria_modelo->obtener_todas_categorias();
+            $data["categorias_modificables"] = $this->categoria_modelo->obtener_todas_categorias_modificables(0);
+            $data["categorias"] = $this->categoria_modelo->obtener_todas_categorias(0);
             $data["productos"]  = $this->productos_modelo->obtener_todos_productos(0);
             $this->load->view('administrador/pages/catalogo',$data);
             $data["tipo"] = 0;

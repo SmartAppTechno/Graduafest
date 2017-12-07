@@ -13,7 +13,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a href="<?php echo site_url("admin/log_out"); ?>"  ><i class="fa fa-sign-out fa-fw"></i> Cerra Session</a>
+                    <a href="<?php echo site_url("admin/log_out"); ?>"  ><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
                 </li>
                 <!-- /.LogOut -->
             </ul>
@@ -45,7 +45,7 @@
                                     <a href="<?php echo site_url("admin/asignar_personas"); ?>" <?php echo $nav_id===3?'class="active"':""; ?> >Asignar personas</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("admin/gestionar_graduacion"); ?>" <?php echo $nav_id===4?'class="active"':""; ?> >Gestionar gruaduacion</a>
+                                    <a href="<?php echo site_url("admin/gestionar_graduacion"); ?>" <?php echo $nav_id===4?'class="active"':""; ?> >Gestionar graduación</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo site_url("admin/gestionar_lugares"); ?>" <?php echo $nav_id===5?'class="active"':""; ?> >Gestionar lugares</a>

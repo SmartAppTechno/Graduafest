@@ -20,13 +20,13 @@ class Categoria_modelo extends CI_Model {
         $where = array('id_categoria' => $this->input->post('id'));
         return $this->db->update('tbl_categoria', $data, $where);
     }
-    public function obtener_todas_categorias_modificables($personales = 0){
+    public function obtener_todas_categorias_modificables($personales){
         $this->db->where("id_categoria > 1 AND tipo_categoria = ".$personales);
         $query = $this->db->get('tbl_categoria');           
         return $query->result();
     }
-    public function obtener_todas_categorias($personales = 0){        
-        $this->db->where("tipo_categoria = ".$personales);
+    public function obtener_todas_categorias($personales){        
+        $this->db->where("tipo_categoria =".$personales);
         $query = $this->db->get('tbl_categoria');           
         return $query->result();
     }

@@ -113,8 +113,7 @@
 					var Checked = 0;
 					if ($('#extra').is(':checked')) {
 						Checked=1;
-					}else
-						Checked=0;
+					}
 					
                     $.ajax({
                         url:"<?php echo site_url("admin/personales/productos/add"); ?>",

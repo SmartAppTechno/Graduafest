@@ -48,7 +48,7 @@
                                     <input type="hidden" id="costo" name="costo" value="<?php  echo $item->costo?>"/>
                                     <input type="hidden" name="image" id="image" value="http://www.graduafestzac.com.mx/imagenes_productos/<?php echo $item->imagen?>" width="50">
                                     <div class="row">
-	                                    <h4 class="service-heading" style="margin:0;">Cantidad:</h4> <input type="number" id="cantidad" name="cantidad" style="width:6rem;">
+	                                    <h4 class="service-heading" style="margin:0;">Cantidad:</h4> <input type="number" min="0" id="cantidad" name="cantidad" style="width:6rem;">
                                     </div>
                                     <button id="ok" type="submit" class="btn btn-primary btn_add" style="margin-bottom:3rem;margin-top:1rem;">Añadir a carrito</button>
                                 </form>
