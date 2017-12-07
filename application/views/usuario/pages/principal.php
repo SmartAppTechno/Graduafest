@@ -21,17 +21,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Custom Fonts -->
     <link href="<?php echo site_url("templates/usuario/vendor/font-awesome/css/font-awesome.min.css") ?>" rel="stylesheet" type="text/css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-	<!-- Iconos -->
-	
-	<link rel="shortcut icon" href="http://www.graduafestzac.com.mx/assets/imagesUser/logogradua.png">
+    <!-- Iconos -->
+    
+    <link rel="shortcut icon" href="http://www.graduafestzac.com.mx/assets/imagesUser/logogradua.png">
     <link rel="apple-touch-icon-precomposed" href="http://www.graduafestzac.com.mx/assets/imagesUser/logogradua_1.png"/>
     <!-- Theme CSS -->
     <link href="<?php echo site_url("templates/usuario/css/agency.css") ?>" rel="stylesheet">
-	<link href="<?php echo site_url("templates/usuario/css/bootstrap-social.css") ?>" rel="stylesheet">
+    <link href="<?php echo site_url("templates/usuario/css/bootstrap-social.css") ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,15 +39,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<style>
-		.div_cont1 { border-style: solid; border-width: 4px;  border-color: #ffffff;}
-		.div_cont2 { border-style: solid; border-width: 4px;  border-color: #000000;}
-	</style>
-	<script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
+    <style>
+        .div_cont1 { border-style: solid; border-width: 4px;  border-color: #ffffff;}
+        .div_cont2 { border-style: solid; border-width: 4px;  border-color: #000000;}
+    </style>
+    <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
 </head>
 
 <body id="page-top" class="index">
 <div id="fb-root"></div>
+    <?php // echo $error_registrar ?>
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
@@ -65,13 +66,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li>
                         <a data-toggle="modal" href="#myModal">Ingresar</a>
                     </li>
-					<li>
+                    <li>
                         <a class="page-scroll" href="#about">Quienes Somos</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Servicios</a>
                     </li>
-					<li>
+                    <li>
                         <a class="page-scroll" href="#portfolio">Galeria</a>
                     </li>
                     <li>
@@ -93,12 +94,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h4 class="modal-title">Ingresar</h4>
           </div>
           <div class="modal-body">
-              <form role="form" action="<?php echo base_url('fblogin'); ?>" method="post">
+              <h5>Facebook</h5>
+             <form role="form" action="<?php echo base_url('fblogin'); ?>" method="post">
                   <button type="submit" class="btn btn-primary">Iniciar Sesión con Facebook</button>
+              </form>
+              <h5>Email</h5>
+              <form action="<?php echo site_url("user/log_in/email") ?>" method="post">
+                  <div class="form-group">
+                      <!--<label>Email</label>-->
+                      <input type="email" class="form-control" placeholder="Correo electrónico" id="usuario" name="usuario" required>                      
+                  </div>
+                  <div class="form-group">
+                      <!--<label>Contraseña:</label>-->
+                      <input type="password" class="form-control" placeholder="Contraseña" id="contraseña" name="contraseña" required>                      
+                  </div>
+                  <?php if($error_registrar == 3){?>
+                  <p style="color: #e74c3c;">La contraseña o el correo son incorrectos.</p>
+                  <script>
+                    $( document ).ready(function() {
+                        $("#myModal").modal();
+                    });
+                  </script>
+                  <?php } ?>
+                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                  <button id="registrar" class="btn btn-primary"><i class="fa fa-share" aria-hidden="true"></i>Registrarse</button>
+              </form>
+                
+              
+              <form id="form_r" action="<?php echo site_url("user/registrarse") ?>" method="post">
+                  <h5>Registrarse</h5>
+                  <div class="form-group">
+                      <!--<label>Email</label>-->
+                      <input type="text" class="form-control" placeholder="Nombre" id="nombre" name="nombre" required>                      
+                  </div>
+                  <div class="form-group">
+                      <!--<label>Email</label>-->
+                      <input type="email" class="form-control" placeholder="Correo electronico" id="email" name="email" required>                      
+                  </div>
+                  <div class="form-group">
+                      <!--<label>Contraseña:</label>-->
+                      <input type="password" class="form-control" placeholder="Contraseña" id="contraseña" name="contraseña" required>                      
+                  </div>
+                  <?php if($error_registrar == 1){?>
+                  <p style="color: #e74c3c;">Error al registrar</p>
+                  <script>
+                    $( document ).ready(function() {
+                        $("#myModal").modal();
+                    });
+                  </script>
+                  <?php } ?>
+                  <?php if($error_registrar == 2){?>
+                  <p style="color: #e74c3c;">Error el correo ya fue utilizado</p>
+                  <script>
+                    $( document ).ready(function() {
+                        $("#myModal").modal();
+                    });
+                  </script>
+                  <?php } ?>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
               </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
 
@@ -109,14 +166,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <header id="headerP">
         <div class="container">
             <div class="intro-text" style="padding-top:15%;">
-			<div class="col-md-12" style="text-align:center;">
-					<div class="col-md-8 col-md-offset-2" style="text-align:center;">
-						<img width="100%" src="<?php echo site_url("assets/imagesUser/LogoGradua_b.png"); ?>" alt="">
-						<!--<p style="font-size: 40px; font-family: 'Kaushan Script';" class="section-heading">#GraduaFest</p>-->
-					</div>
-				<!--<h2 style="font-size: 40px;" class="section-heading">THE</h2><h2 style="font-size: 40px;" class="section-heading">BEST&ONLY</h2><h2 style="font-size: 40px;" class="section-heading" >PROM</h2>-->
-			</div>		
-			<a style="margin-top:5%;"data-toggle="modal" href="#myModal" class="page-scroll btn btn-xl">Ingresar</a>
+            <div class="col-md-12" style="text-align:center;">
+                    <div class="col-md-8 col-md-offset-2" style="text-align:center;">
+                        <img width="100%" src="<?php echo site_url("assets/imagesUser/LogoGradua_b.png"); ?>" alt="">
+                        <!--<p style="font-size: 40px; font-family: 'Kaushan Script';" class="section-heading">#GraduaFest</p>-->
+                    </div>
+                <!--<h2 style="font-size: 40px;" class="section-heading">THE</h2><h2 style="font-size: 40px;" class="section-heading">BEST&ONLY</h2><h2 style="font-size: 40px;" class="section-heading" >PROM</h2>-->
+            </div>      
+            <a style="margin-top:5%;"data-toggle="modal" href="#myModal" class="page-scroll btn btn-xl">Ingresar</a>
             </div>
         </div>
     </header>
@@ -124,23 +181,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <section class="success" id="about">
         <div class="container">
             <div class="row">
-			
+            
                 <div class="col-lg-12 text-center">
                     <div class="col-md-6 div_cont2 col-md-offset-3">
                     <p style="font-size: 40px; font-family: 'Kaushan Script';" class="section-heading">Quienes Somos!</p>
-					</div>
+                    </div>
                 </div>
             </div>
-			<br>
-			<br>
+            <br>
+            <br>
             <div class="row">
-				<div class="col-lg-4" style="text-align:center;">
-				<img src="http://graduafestzac.com.mx/imagenes_portada/Galeria0.jpg" width="250px" height="250px"  class="img-circle">
-				</div>
+                <div class="col-lg-4" style="text-align:center;">
+                <img src="http://graduafestzac.com.mx/imagenes_portada/Galeria0.jpg" width="250px" height="250px"  class="img-circle">
+                </div>
                 <div class="col-lg-8" style="text-align:center;">
-				<br>
-				<br>
-				<p># GRADUAFEST BY EVENTOS CON CLASSE somos una agencia fundada en el año 2010 dedicada a la organización y logística de eventos sociales, en 2014 creamos el concepto llamado #graduafest inspirado en ceremonias de graduación con estándares de calidad superior a los ya existentes en el estado. 
+                <br>
+                <br>
+                <p># GRADUAFEST BY EVENTOS CON CLASSE somos una agencia fundada en el año 2010 dedicada a la organización y logística de eventos sociales, en 2014 creamos el concepto llamado #graduafest inspirado en ceremonias de graduación con estándares de calidad superior a los ya existentes en el estado. 
 El primer año de operación de #graduafest15 realizamos 13 graduaciones de diferentes instituciones con un total de 8900 asistentes a nuestros eventos.
 En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 con un total de 15,000 mil asistentes.</p>
                 </div>
@@ -149,146 +206,146 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </section>
-	
+    
 
-	<section id="services">
+    <section id="services">
         <div class="container">
             <div class="row">
                  <div class="col-lg-12 text-center">
                     <div class="col-md-6 div_cont2 col-md-offset-3">
                     <p style="font-size: 40px; font-family: 'Kaushan Script';" class="section-heading">Servicios</p>
-					</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="container" style="margin-top:5%;">
             <div class="row">
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			  <!-- Indicators -->
-			  <ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-				<li data-target="#myCarousel" data-slide-to="3"></li>
-			  </ol>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+              </ol>
 
-			  <!-- Wrapper for slides -->
-			  <div class="carousel-inner" role="listbox">
-				<div class="item active">
-				  <div class="col-lg-12 col-md-12 text-center">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-building text-primary sr-icons"></i>
                         <h3>Salónes</h3>
                         
                     </div>
                 </div>
-				</div>
+                </div>
 
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-graduation-cap text-primary sr-icons"></i>
                         <h3>Celebración Religiosa</h3>
                         
                     </div>
                 </div>
-				</div>
+                </div>
 
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-cutlery text-primary sr-icons"></i>
                         <h3>Banquetes</h3>
                         
                     </div>
                 </div>
-				</div>
+                </div>
 
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-music text-primary sr-icons"></i>
                         <h3>Musica</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-diamond text-primary sr-icons"></i>
                         <h3>Decoración</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-video-camera text-primary sr-icons"></i>
                         <h3>Video y Fotografía</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-gift text-primary sr-icons"></i>
                         <h3>Souvenirs</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-glass text-primary sr-icons"></i>
                         <h3>Shots</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-camera-retro text-primary sr-icons"></i>
                         <h3>Cabina de Foto</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-hand-peace-o text-primary sr-icons"></i>
                         <h3>Pre-Fiesta</h3>
                         
                     </div>
                 </div>
-				</div>
-				<div class="item">
-				  <div class="col-lg-12 col-md-12 text-center">
+                </div>
+                <div class="item">
+                  <div class="col-lg-12 col-md-12 text-center">
                     <div class="service-box">
                         <i class="fa fa-5x fa-sign-language text-primary sr-icons"></i>
                         <h3>Torna-Fiest</h3>
                         
                     </div>
                 </div>
-				</div>
-			  </div>
+                </div>
+              </div>
 
-			  <!-- Left and right controls -->
-			  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			  </a>
-			  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			  </a>
-			</div>
-			<!--
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <!--
                 <div class="col-lg-4 col-md-4 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
@@ -317,7 +374,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         
                     </div>
                 </div>
-				<div class="col-lg-4 col-md-4 text-center">
+                <div class="col-lg-4 col-md-4 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
                         <h3>Decoración</h3>
@@ -345,7 +402,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         
                     </div>
                 </div>
-				<div class="col-lg-4 col-md-4 text-center">
+                <div class="col-lg-4 col-md-4 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
                         <h3>Cabina de Fotos</h3>
@@ -374,15 +431,15 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-				<div class="col-md-6 div_cont2 col-md-offset-3">
+                <div class="col-md-6 div_cont2 col-md-offset-3">
                     <p style="font-size: 40px; font-family: 'Kaushan Script';" class="section-heading">Galeria</p>
-				</div>
+                </div>
                 </div>
             </div>
-			<br>
-			<br>
+            <br>
+            <br>
             <div class="row">
-			
+            
                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
@@ -454,7 +511,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -468,7 +525,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal7" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -482,7 +539,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal8" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -496,7 +553,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal9" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -510,7 +567,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal10" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -524,7 +581,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal11" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -538,7 +595,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal12" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -552,7 +609,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal13" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -566,7 +623,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal14" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -580,7 +637,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal15" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -594,7 +651,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal16" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -608,7 +665,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         <p class="text-muted">Website Design</p>
                     </div>-->
                 </div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal17" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -633,11 +690,11 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                 <div class="col-lg-12 text-center">
                     <div class="col-md-6 div_cont1 col-md-offset-3">
                     <p style="font-size: 40px; font-family: 'Kaushan Script';" class="section-heading">Cotizaciones</p>
-				</div>
+                </div>
                 </div>
             </div>
-			<br>
-			<br>
+            <br>
+            <br>
             <div class="row">
                 <div class="col-lg-12">
                     <form name="sentMessage" id="contactForm" novalidate>
@@ -686,7 +743,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
                         </li>
                         <li><a href="https://m.facebook.com/graduafestzacatecas/"><i class="fa fa-facebook"></i></a>
                         </li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a>
                         </li>
                         <li><a href="https://m.youtube.com/channel/UCK5NUXdeNR-ULbl_oC3VzNg"><i class="fa fa-youtube"></i></a>
                         </li>
@@ -704,7 +761,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
     <!-- Portfolio Modals -->
     <!-- Use the modals below to showcase details about your portfolio projects! -->
 
-	
+    
     <!-- Portfolio Modal 1 -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -883,8 +940,8 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	
-	   <!-- Portfolio Modal 6 -->
+    
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -912,7 +969,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal8" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -940,7 +997,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal9" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -968,7 +1025,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal10" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -996,7 +1053,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal11" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1024,7 +1081,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal12" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1052,7 +1109,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal13" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1080,7 +1137,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal14" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1108,7 +1165,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal15" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1136,7 +1193,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal16" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1164,7 +1221,7 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-	   <!-- Portfolio Modal 6 -->
+       <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal modal fade" id="portfolioModal17" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1192,7 +1249,3 @@ En su segundo año de #graduafest16 realizamos 25 graduaciones temporada 2015 co
             </div>
         </div>
     </div>
-   
-    
-
- 
