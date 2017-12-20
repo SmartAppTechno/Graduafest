@@ -1,1 +1,0 @@
-<p>Estos mensajes fueron hechos en code igniter. :3<p>
